@@ -29,7 +29,19 @@ namespace LibraryApp.Core
                 new Book(){ ID = 5, Name = "Голодные игры", Author = "Коллинз Сьюзен", Year = 2010 },
             };
             Newspapers = new List<Newspaper>();
-            Magazines = new List<Magazine>();
+            Magazines = new List<Magazine>
+            {
+                new Magazine(){ ID = 1, Name = "Cosmopolitan",
+                    Language = "English", Published = DateTime.Today },
+                new Magazine(){ ID = 2, Name = "Здоровье и Красота",
+                    Language = "Русский", Published = DateTime.Today },
+                new Magazine(){ ID = 3, Name = "Forbes",
+                    Language = "Смешанный", Published = DateTime.Today },
+                new Magazine(){ ID = 4, Name = "Как это работает?",
+                    Language = "Русский", Published = DateTime.Today },
+                new Magazine(){ ID = 5, Name = "People",
+                    Language = "English", Published = DateTime.Today },
+            };
         }
     }
 }

@@ -28,5 +28,19 @@ namespace LibraryApp
             _bindingSource.DataSource = _bookHelper.GetBooks();
             dgvBooks.DataSource = _bindingSource;
         }
+
+        private void buttonAdd_Click(object sender, EventArgs e)
+        {
+            _bookHelper.AddBook(tbxName.Text, tbxAuthor.Text, int.Parse(tbxYear.Text));
+            _bindingSource.DataSource = _bookHelper.GetBooks();
+        }
+
+        private void buttonDelete_Click(object sender, EventArgs e)
+        {
+            var bookId = dgvBooks["ID", dgvBooks.CurrentRow.Index].Value;
+            _bookHelper.DeleteBook((int)bookId);
+            _bindingSource.DataSource = _bookHelper.GetBooks();
+            //_bindingSource.ResetBindings(true);
+        }
     }
 }
