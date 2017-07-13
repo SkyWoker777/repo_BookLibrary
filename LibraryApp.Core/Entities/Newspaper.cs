@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace LibraryApp.Core.Entities
 {
-    public class BookGenre : Entity
+    public class Newspaper : Entity
     {
         public string Name { get; set; }
+        public DateTime PostedOn { get; set; } 
     }
 }

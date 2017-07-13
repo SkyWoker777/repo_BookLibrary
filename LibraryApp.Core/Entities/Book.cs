@@ -8,9 +8,36 @@ namespace LibraryApp.Core.Entities
 {
     public class Book : Entity
     {
-        public string Name { get; set; }
-        public string Author { get; set; }
-        public int? Year { get; set; }
-        //public BookGenre Genre { get; set; }
+        private string _name;
+        private string _author;
+        private int? _year;
+
+        public string Name
+        {
+            get { return _name; }
+            set
+            {
+                _name = value;
+                OnPropertyChanged();
+            }
+        }
+        public string Author
+        {
+            get { return _author; }
+            set
+            {
+                _author = value;
+                OnPropertyChanged();
+            }
+        }
+        public int? Year
+        {
+            get { return _year; }
+            set
+            {
+                _year = value;
+                OnPropertyChanged();
+            }
+        }
     }
 }

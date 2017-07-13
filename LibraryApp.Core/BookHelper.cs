@@ -16,6 +16,32 @@ namespace LibraryApp.Core
             _repository = repo;
         }
 
+        private int SetId()
+        {
+            int id = 1;
+            if (_repository.Books.Count() != 0)
+            {
+                return GetBooks().Max(x => x.ID + 1);
+            }
+            return id;
+        }
+
+        public void AddBook(string name, string author, int? year)
+        {
+            var book = new Book();
+            book.Name = name;
+            book.Author = author;
+            book.Year = year;
+            book.ID = SetId();
+            _repository.Add(book);
+        }
+
+        public void DeleteBook(int id)
+        {
+            var book = GetBook(id);
+            _repository.Delete(book);
+        }
+
         public IEnumerable<Book> GetBooks()
         {
             return _repository.Books;

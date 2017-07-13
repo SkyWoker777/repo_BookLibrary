@@ -7,9 +7,11 @@ using System.Threading.Tasks;
 
 namespace LibraryApp.Core
 {
-    class LibraryContext
+    public class LibraryContext
     {
         public IList<Book> Books { get; set; }
+        public IList<Newspaper> Newspapers { get; set; }
+        public IList<Magazine> Magazines { get; set; }
 
         public LibraryContext()
         {
@@ -26,6 +28,8 @@ namespace LibraryApp.Core
                 new Book(){ ID = 4, Name = "Сделка с дьяволом", Author = "Андерсон Эвангелина", Year = 2005 },
                 new Book(){ ID = 5, Name = "Голодные игры", Author = "Коллинз Сьюзен", Year = 2010 },
             };
+            Newspapers = new List<Newspaper>();
+            Magazines = new List<Magazine>();
         }
     }
 }

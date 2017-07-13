@@ -42,8 +42,9 @@
   <ItemGroup>
     <Compile Include="BookHelper.cs" />
     <Compile Include="Entities\Book.cs" />
-    <Compile Include="Entities\BookGenre.cs" />
     <Compile Include="Entities\Entity.cs" />
+    <Compile Include="Entities\Magazine.cs" />
+    <Compile Include="Entities\Newspaper.cs" />
     <Compile Include="IRepository.cs" />
     <Compile Include="LibraryContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
