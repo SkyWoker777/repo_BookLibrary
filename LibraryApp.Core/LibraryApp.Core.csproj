@@ -48,6 +48,7 @@
     <Compile Include="IRepository.cs" />
     <Compile Include="LibraryContext.cs" />
     <Compile Include="MagazineHelper.cs" />
+    <Compile Include="NewspaperHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository.cs" />
   </ItemGroup>

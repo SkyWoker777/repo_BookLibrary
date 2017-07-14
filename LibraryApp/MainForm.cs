@@ -13,34 +13,74 @@ namespace LibraryApp
 {
     public partial class MainForm : Form
     {
-        private BookHelper _bookHelper;
-        private BindingSource _bindingSource;
+        private BookHelper _bookHelper = new BookHelper(new Repository());
+        private MagazineHelper _magazHelper = new MagazineHelper(new Repository());
+        private NewspaperHelper _paperHelper = new NewspaperHelper(new Repository());
+
+        private BindingSource _bindingSourceBook = new BindingSource();
+        private BindingSource _bindingSourceMagazine = new BindingSource();
+        private BindingSource _bindingSourceNewspaper = new BindingSource();
         public MainForm()
         {
             InitializeComponent();
-            _bookHelper = new BookHelper(new Repository());
-            _bindingSource = new BindingSource();
             this.Load += new EventHandler(MainForm_Load);
         }
 
+
         private void MainForm_Load(object sender, EventArgs e)
         {
-            _bindingSource.DataSource = _bookHelper.GetBooks();
-            dgvBooks.DataSource = _bindingSource;
+            _bindingSourceBook.DataSource = _bookHelper.GetBooks();
+            dgvBooks.DataSource = _bindingSourceBook;
+
+            _bindingSourceMagazine.DataSource = _magazHelper.GetMagazines();
+            dgvMagazines.DataSource = _bindingSourceMagazine;
+
+            _bindingSourceNewspaper.DataSource = _paperHelper.GetNewspapers();
+            dgvNewspapers.DataSource = _bindingSourceNewspaper;
+            
         }
 
-        private void buttonAdd_Click(object sender, EventArgs e)
+        private void btn_AddBook_Click(object sender, EventArgs e)
         {
-            _bookHelper.AddBook(tbxName.Text, tbxAuthor.Text, int.Parse(tbxYear.Text));
-            _bindingSource.DataSource = _bookHelper.GetBooks();
+           _bookHelper.AddBook(tbxNameBook.Text, 
+                                tbxAuthor.Text, 
+                                int.Parse(tbxYear.Text));
         }
 
-        private void buttonDelete_Click(object sender, EventArgs e)
+        private void btn_DeleteBook_Click(object sender, EventArgs e)
         {
             var bookId = dgvBooks["ID", dgvBooks.CurrentRow.Index].Value;
             _bookHelper.DeleteBook((int)bookId);
-            _bindingSource.DataSource = _bookHelper.GetBooks();
-            //_bindingSource.ResetBindings(true);
+        }
+
+        private void btn_AddMagazine_Click(object sender, EventArgs e)
+        {
+            _magazHelper.AddMagazine(tbxNameMag.Text, 
+                                     tbxLang.Text, 
+                                     dtp_Pablished.Value.Date);
+
+        }
+
+        private void btn_DeleteMagazine_Click(object sender, EventArgs e)
+        {
+            var magazId = dgvMagazines["ID", dgvMagazines.CurrentRow.Index].Value;
+            _magazHelper.DeleteMagazine((int)magazId);
+        }
+
+        private void btn_AddNewspaper_Click(object sender, EventArgs e)
+        {
+            _paperHelper.AddNewspaper(tbxNameNews.Text, dtp_Posted.Value.Date);
+        }
+
+        private void btn_DeleteNewspaper_Click(object sender, EventArgs e)
+        {
+            var paperId = dgvNewspapers["ID", dgvNewspapers.CurrentRow.Index].Value;
+            _paperHelper.DeleteNewspaper((int)paperId);
+        }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

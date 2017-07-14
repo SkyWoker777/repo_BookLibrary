@@ -19,9 +19,9 @@ namespace LibraryApp.Core
         private int SetId()
         {
             int id = 1;
-            if (_repository.Books.Count() != 0)
+            if (_repository.Magazines.Count() != 0)
             {
-                return GetMagazines().Max(x => x.ID + 1);
+                return _repository.Magazines.Max(x => x.ID + 1);
             }
             return id;
         }
@@ -36,7 +36,17 @@ namespace LibraryApp.Core
             _repository.Add(magazine);
         }
 
-        public void DeleteBook(int id)
+        public Magazine EditMagazine(int id, string name, string lang, DateTime? published)
+        {
+            var magaz = GetMagazine(id);
+            magaz.Name = name;
+            magaz.Language = lang;
+            magaz.Published = published;
+            _repository.Add(magaz);
+            return magaz;
+        }
+
+        public void DeleteMagazine(int id)
         {
             var magazine = GetMagazine(id);
             _repository.Delete(magazine);
@@ -48,7 +58,7 @@ namespace LibraryApp.Core
         }
         public Magazine GetMagazine(int id)
         {
-            return GetMagazines().First(b => b.ID == id);
+            return _repository.Magazines.First(b => b.ID == id);
         }
     }
 }

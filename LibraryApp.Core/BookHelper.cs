@@ -21,7 +21,7 @@ namespace LibraryApp.Core
             int id = 1;
             if (_repository.Books.Count() != 0)
             {
-                return GetBooks().Max(x => x.ID + 1);
+                return _repository.Books.Max(x => x.ID + 1);
             }
             return id;
         }
@@ -34,6 +34,16 @@ namespace LibraryApp.Core
             book.Year = year;
             book.ID = SetId();
             _repository.Add(book);
+        }
+
+        public Book EditBook(int id, string name, string author, int? year)
+        {
+            var book = GetBook(id);
+            book.Name = name;
+            book.Author = author;
+            book.Year = year;
+            _repository.Add(book);
+            return book;
         }
 
         public void DeleteBook(int id)

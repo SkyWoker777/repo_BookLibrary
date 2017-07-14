@@ -15,9 +15,9 @@ namespace LibraryApp.Core
         {
             _context = new LibraryContext();
         }
-        public IEnumerable<Book> Books => _context.Books.ToList();
-        public IEnumerable<Magazine> Magazines => _context.Magazines.ToList();
-        public IEnumerable<Newspaper> Newspapers => _context.Newspapers.ToList();
+        public IEnumerable<Book> Books => _context.Books;
+        public IEnumerable<Magazine> Magazines => _context.Magazines;
+        public IEnumerable<Newspaper> Newspapers => _context.Newspapers;
 
         public void Add<T>(T entity) where T : Entity
         {
