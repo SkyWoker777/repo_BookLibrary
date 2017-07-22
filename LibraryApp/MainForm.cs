@@ -7,77 +7,90 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using LibraryApp.Core;
+using LibraryApp.Presentation.ViewContracts;
+using LibraryApp.Core.Entities;
 
 namespace LibraryApp
 {
-    public partial class MainForm : Form
+    public partial class MainForm : Form, IMainView
     {
-        private BookHelper _bookHelper = new BookHelper(new Repository());
-        private MagazineHelper _magazHelper = new MagazineHelper(new Repository());
-        private NewspaperHelper _paperHelper = new NewspaperHelper(new Repository());
+        private BindingSource _bsBooks = new BindingSource();
+        private BindingSource _bsMagazines = new BindingSource();
+        private BindingSource _bsNewspapers = new BindingSource();
 
-        private BindingSource _bindingSourceBook = new BindingSource();
-        private BindingSource _bindingSourceMagazine = new BindingSource();
-        private BindingSource _bindingSourceNewspaper = new BindingSource();
-        public MainForm()
+        private readonly ApplicationContext _context;
+
+        public MainForm(ApplicationContext context)
         {
+            _context = context;
             InitializeComponent();
-            this.Load += new EventHandler(MainForm_Load);
+
+            btnAddBook.Click += (sender, e) => Invoke(AddBook);
+            btnDeleteBook.Click += (sender, e) => Invoke(DeleteBook);
+            btnAddMagazine.Click += (sender, e) => Invoke(AddMagazine);
+            btnDeleteMagazine.Click += (sender, e) => Invoke(DeleteMagazine);
+            btnAddNewspaper.Click += (sender, e) => Invoke(AddNewspaper);
+            btnDeleteNewspaper.Click += (sender, e) => Invoke(DeleteNewspaper);
         }
 
+        #region tabPageBooks
 
-        private void MainForm_Load(object sender, EventArgs e)
+        public int BookId => (int)dgvBooks["ID", dgvBooks.CurrentRow.Index].Value;
+        public string BookName => tbxNameBook.Text;
+        public string BookAuthor => tbxAuthorBook.Text;
+        public string BookYear => tbxYearBook.Text;
+
+        public event Action AddBook;
+        public event Action DeleteBook;
+        #endregion
+
+        #region tabPageMagazines
+
+        public int MagazId => (int)dgvMagazines["ID", dgvMagazines.CurrentRow.Index].Value;
+        public string MagazineName => tbxNameMag.Text;
+        public string MagazineLang => tbxLangMag.Text;
+        public DateTime? Published => dtp_Pablished.Value.Date;
+
+        public event Action AddMagazine;
+        public event Action DeleteMagazine;
+        #endregion
+
+        #region tabPageNewspapers
+
+        public int NewspaperId => (int)dgvNewspapers["ID", dgvNewspapers.CurrentRow.Index].Value;
+        public string NewspaperName => tbxNameNews.Text;
+        public DateTime? PostedOn => dtp_Posted.Value.Date;
+
+        public event Action AddNewspaper;
+        public event Action DeleteNewspaper;
+        #endregion
+
+        public void Message(string message)
         {
-            _bindingSourceBook.DataSource = _bookHelper.GetBooks();
-            dgvBooks.DataSource = _bindingSourceBook;
-
-            _bindingSourceMagazine.DataSource = _magazHelper.GetMagazines();
-            dgvMagazines.DataSource = _bindingSourceMagazine;
-
-            _bindingSourceNewspaper.DataSource = _paperHelper.GetNewspapers();
-            dgvNewspapers.DataSource = _bindingSourceNewspaper;
-            
+            labelInfo.Text = message;
         }
 
-        private void btn_AddBook_Click(object sender, EventArgs e)
+        public new void Load(IEnumerable<Book> listBook, IEnumerable<Magazine> listMag,
+            IEnumerable<Newspaper> listNews)
         {
-           _bookHelper.AddBook(tbxNameBook.Text, 
-                                tbxAuthor.Text, 
-                                int.Parse(tbxYear.Text));
-        }
+            _bsBooks.DataSource = listBook;
+            dgvBooks.DataSource = _bsBooks;
 
-        private void btn_DeleteBook_Click(object sender, EventArgs e)
+            _bsMagazines.DataSource = listMag;
+            dgvMagazines.DataSource = _bsMagazines;
+
+            _bsNewspapers.DataSource = listNews;
+            dgvNewspapers.DataSource = _bsNewspapers;
+        }
+        public new void Show()
         {
-            var bookId = dgvBooks["ID", dgvBooks.CurrentRow.Index].Value;
-            _bookHelper.DeleteBook((int)bookId);
+            _context.MainForm = this;
+            Application.Run(_context);
         }
-
-        private void btn_AddMagazine_Click(object sender, EventArgs e)
+        private void Invoke(Action action)
         {
-            _magazHelper.AddMagazine(tbxNameMag.Text, 
-                                     tbxLang.Text, 
-                                     dtp_Pablished.Value.Date);
-
+            action?.Invoke();
         }
-
-        private void btn_DeleteMagazine_Click(object sender, EventArgs e)
-        {
-            var magazId = dgvMagazines["ID", dgvMagazines.CurrentRow.Index].Value;
-            _magazHelper.DeleteMagazine((int)magazId);
-        }
-
-        private void btn_AddNewspaper_Click(object sender, EventArgs e)
-        {
-            _paperHelper.AddNewspaper(tbxNameNews.Text, dtp_Posted.Value.Date);
-        }
-
-        private void btn_DeleteNewspaper_Click(object sender, EventArgs e)
-        {
-            var paperId = dgvNewspapers["ID", dgvNewspapers.CurrentRow.Index].Value;
-            _paperHelper.DeleteNewspaper((int)paperId);
-        }
-
         private void btnExit_Click(object sender, EventArgs e)
         {
             Application.Exit();

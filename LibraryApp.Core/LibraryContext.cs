@@ -51,5 +51,12 @@ namespace LibraryApp.Core
                     Language = "English", Published = DateTime.Today },
             };
         }
+
+        //public void SaveChanges()
+        //{
+        //    Books.ResetBindings();
+        //    Magazines.ResetBindings();
+        //    Newspapers.ResetBindings();
+        //}
     }
 }

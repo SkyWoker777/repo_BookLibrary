@@ -36,30 +36,31 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.tbxYear = new System.Windows.Forms.TextBox();
-            this.tbxAuthor = new System.Windows.Forms.TextBox();
+            this.tbxYearBook = new System.Windows.Forms.TextBox();
+            this.tbxAuthorBook = new System.Windows.Forms.TextBox();
             this.tbxNameBook = new System.Windows.Forms.TextBox();
             this.dgvBooks = new System.Windows.Forms.DataGridView();
             this.tabPageMagazines = new System.Windows.Forms.TabPage();
-            this.btn_DeleteMagazine = new System.Windows.Forms.Button();
+            this.btnDeleteMagazine = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dtp_Pablished = new System.Windows.Forms.DateTimePicker();
-            this.btn_AddMagazine = new System.Windows.Forms.Button();
+            this.btnAddMagazine = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.tbxLang = new System.Windows.Forms.TextBox();
+            this.tbxLangMag = new System.Windows.Forms.TextBox();
             this.tbxNameMag = new System.Windows.Forms.TextBox();
             this.dgvMagazines = new System.Windows.Forms.DataGridView();
             this.tabPageNewspapers = new System.Windows.Forms.TabPage();
-            this.btn_DeleteNewspaper = new System.Windows.Forms.Button();
+            this.btnDeleteNewspaper = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.dtp_Posted = new System.Windows.Forms.DateTimePicker();
-            this.btn_AddNewspaper = new System.Windows.Forms.Button();
+            this.btnAddNewspaper = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.tbxNameNews = new System.Windows.Forms.TextBox();
             this.dgvNewspapers = new System.Windows.Forms.DataGridView();
+            this.labelInfo = new System.Windows.Forms.Label();
             this.btnExit = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPageBooks.SuspendLayout();
@@ -109,33 +110,32 @@
             this.btnDeleteBook.TabIndex = 2;
             this.btnDeleteBook.Text = "Delete";
             this.btnDeleteBook.UseVisualStyleBackColor = true;
-            this.btnDeleteBook.Click += new System.EventHandler(this.btn_DeleteBook_Click);
             // 
             // groupBox1
             // 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.groupBox1.Controls.Add(this.btnAddBook);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.tbxYear);
-            this.groupBox1.Controls.Add(this.tbxAuthor);
+            this.groupBox1.Controls.Add(this.tbxYearBook);
+            this.groupBox1.Controls.Add(this.tbxAuthorBook);
             this.groupBox1.Controls.Add(this.tbxNameBook);
-            this.groupBox1.Location = new System.Drawing.Point(8, 255);
+            this.groupBox1.Location = new System.Drawing.Point(8, 239);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(218, 183);
+            this.groupBox1.Size = new System.Drawing.Size(245, 200);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "New Book";
+            this.groupBox1.Text = "New book";
             // 
             // btnAddBook
             // 
-            this.btnAddBook.Location = new System.Drawing.Point(132, 148);
+            this.btnAddBook.Location = new System.Drawing.Point(159, 169);
             this.btnAddBook.Name = "btnAddBook";
             this.btnAddBook.Size = new System.Drawing.Size(80, 25);
             this.btnAddBook.TabIndex = 6;
             this.btnAddBook.Text = "Add";
             this.btnAddBook.UseVisualStyleBackColor = true;
-            this.btnAddBook.Click += new System.EventHandler(this.btn_AddBook_Click);
             // 
             // label3
             // 
@@ -164,19 +164,19 @@
             this.label1.TabIndex = 3;
             this.label1.Text = "Name";
             // 
-            // tbxYear
+            // tbxYearBook
             // 
-            this.tbxYear.Location = new System.Drawing.Point(7, 148);
-            this.tbxYear.Name = "tbxYear";
-            this.tbxYear.Size = new System.Drawing.Size(100, 20);
-            this.tbxYear.TabIndex = 2;
+            this.tbxYearBook.Location = new System.Drawing.Point(7, 148);
+            this.tbxYearBook.Name = "tbxYearBook";
+            this.tbxYearBook.Size = new System.Drawing.Size(100, 20);
+            this.tbxYearBook.TabIndex = 2;
             // 
-            // tbxAuthor
+            // tbxAuthorBook
             // 
-            this.tbxAuthor.Location = new System.Drawing.Point(7, 96);
-            this.tbxAuthor.Name = "tbxAuthor";
-            this.tbxAuthor.Size = new System.Drawing.Size(194, 20);
-            this.tbxAuthor.TabIndex = 1;
+            this.tbxAuthorBook.Location = new System.Drawing.Point(7, 96);
+            this.tbxAuthorBook.Name = "tbxAuthorBook";
+            this.tbxAuthorBook.Size = new System.Drawing.Size(194, 20);
+            this.tbxAuthorBook.TabIndex = 1;
             // 
             // tbxNameBook
             // 
@@ -205,7 +205,7 @@
             // tabPageMagazines
             // 
             this.tabPageMagazines.BackColor = System.Drawing.SystemColors.Control;
-            this.tabPageMagazines.Controls.Add(this.btn_DeleteMagazine);
+            this.tabPageMagazines.Controls.Add(this.btnDeleteMagazine);
             this.tabPageMagazines.Controls.Add(this.groupBox2);
             this.tabPageMagazines.Controls.Add(this.dgvMagazines);
             this.tabPageMagazines.Location = new System.Drawing.Point(4, 22);
@@ -215,32 +215,31 @@
             this.tabPageMagazines.TabIndex = 1;
             this.tabPageMagazines.Text = "Magazines";
             // 
-            // btn_DeleteMagazine
+            // btnDeleteMagazine
             // 
-            this.btn_DeleteMagazine.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_DeleteMagazine.Location = new System.Drawing.Point(409, 239);
-            this.btn_DeleteMagazine.Name = "btn_DeleteMagazine";
-            this.btn_DeleteMagazine.Size = new System.Drawing.Size(80, 25);
-            this.btn_DeleteMagazine.TabIndex = 3;
-            this.btn_DeleteMagazine.Text = "Delete";
-            this.btn_DeleteMagazine.UseVisualStyleBackColor = true;
-            this.btn_DeleteMagazine.Click += new System.EventHandler(this.btn_DeleteMagazine_Click);
+            this.btnDeleteMagazine.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnDeleteMagazine.Location = new System.Drawing.Point(409, 239);
+            this.btnDeleteMagazine.Name = "btnDeleteMagazine";
+            this.btnDeleteMagazine.Size = new System.Drawing.Size(80, 25);
+            this.btnDeleteMagazine.TabIndex = 3;
+            this.btnDeleteMagazine.Text = "Delete";
+            this.btnDeleteMagazine.UseVisualStyleBackColor = true;
             // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.dtp_Pablished);
-            this.groupBox2.Controls.Add(this.btn_AddMagazine);
+            this.groupBox2.Controls.Add(this.btnAddMagazine);
             this.groupBox2.Controls.Add(this.label5);
             this.groupBox2.Controls.Add(this.label6);
             this.groupBox2.Controls.Add(this.label4);
-            this.groupBox2.Controls.Add(this.tbxLang);
+            this.groupBox2.Controls.Add(this.tbxLangMag);
             this.groupBox2.Controls.Add(this.tbxNameMag);
-            this.groupBox2.Location = new System.Drawing.Point(6, 255);
+            this.groupBox2.Location = new System.Drawing.Point(6, 239);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(245, 183);
+            this.groupBox2.Size = new System.Drawing.Size(245, 200);
             this.groupBox2.TabIndex = 2;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "New Magazine";
+            this.groupBox2.Text = "New magazine";
             // 
             // dtp_Pablished
             // 
@@ -249,15 +248,14 @@
             this.dtp_Pablished.Size = new System.Drawing.Size(127, 20);
             this.dtp_Pablished.TabIndex = 4;
             // 
-            // btn_AddMagazine
+            // btnAddMagazine
             // 
-            this.btn_AddMagazine.Location = new System.Drawing.Point(159, 152);
-            this.btn_AddMagazine.Name = "btn_AddMagazine";
-            this.btn_AddMagazine.Size = new System.Drawing.Size(80, 25);
-            this.btn_AddMagazine.TabIndex = 6;
-            this.btn_AddMagazine.Text = "Add";
-            this.btn_AddMagazine.UseVisualStyleBackColor = true;
-            this.btn_AddMagazine.Click += new System.EventHandler(this.btn_AddMagazine_Click);
+            this.btnAddMagazine.Location = new System.Drawing.Point(159, 168);
+            this.btnAddMagazine.Name = "btnAddMagazine";
+            this.btnAddMagazine.Size = new System.Drawing.Size(80, 25);
+            this.btnAddMagazine.TabIndex = 6;
+            this.btnAddMagazine.Text = "Add";
+            this.btnAddMagazine.UseVisualStyleBackColor = true;
             // 
             // label5
             // 
@@ -286,12 +284,12 @@
             this.label4.TabIndex = 5;
             this.label4.Text = "Published:";
             // 
-            // tbxLang
+            // tbxLangMag
             // 
-            this.tbxLang.Location = new System.Drawing.Point(6, 96);
-            this.tbxLang.Name = "tbxLang";
-            this.tbxLang.Size = new System.Drawing.Size(194, 20);
-            this.tbxLang.TabIndex = 1;
+            this.tbxLangMag.Location = new System.Drawing.Point(6, 96);
+            this.tbxLangMag.Name = "tbxLangMag";
+            this.tbxLangMag.Size = new System.Drawing.Size(194, 20);
+            this.tbxLangMag.TabIndex = 1;
             // 
             // tbxNameMag
             // 
@@ -320,7 +318,7 @@
             // tabPageNewspapers
             // 
             this.tabPageNewspapers.BackColor = System.Drawing.SystemColors.Control;
-            this.tabPageNewspapers.Controls.Add(this.btn_DeleteNewspaper);
+            this.tabPageNewspapers.Controls.Add(this.btnDeleteNewspaper);
             this.tabPageNewspapers.Controls.Add(this.groupBox3);
             this.tabPageNewspapers.Controls.Add(this.dgvNewspapers);
             this.tabPageNewspapers.Location = new System.Drawing.Point(4, 22);
@@ -329,29 +327,28 @@
             this.tabPageNewspapers.TabIndex = 2;
             this.tabPageNewspapers.Text = "Newspapers";
             // 
-            // btn_DeleteNewspaper
+            // btnDeleteNewspaper
             // 
-            this.btn_DeleteNewspaper.Location = new System.Drawing.Point(409, 236);
-            this.btn_DeleteNewspaper.Name = "btn_DeleteNewspaper";
-            this.btn_DeleteNewspaper.Size = new System.Drawing.Size(80, 25);
-            this.btn_DeleteNewspaper.TabIndex = 4;
-            this.btn_DeleteNewspaper.Text = "Delete";
-            this.btn_DeleteNewspaper.UseVisualStyleBackColor = true;
-            this.btn_DeleteNewspaper.Click += new System.EventHandler(this.btn_DeleteNewspaper_Click);
+            this.btnDeleteNewspaper.Location = new System.Drawing.Point(409, 236);
+            this.btnDeleteNewspaper.Name = "btnDeleteNewspaper";
+            this.btnDeleteNewspaper.Size = new System.Drawing.Size(80, 25);
+            this.btnDeleteNewspaper.TabIndex = 4;
+            this.btnDeleteNewspaper.Text = "Delete";
+            this.btnDeleteNewspaper.UseVisualStyleBackColor = true;
             // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.dtp_Posted);
-            this.groupBox3.Controls.Add(this.btn_AddNewspaper);
+            this.groupBox3.Controls.Add(this.btnAddNewspaper);
             this.groupBox3.Controls.Add(this.label8);
             this.groupBox3.Controls.Add(this.label9);
             this.groupBox3.Controls.Add(this.tbxNameNews);
-            this.groupBox3.Location = new System.Drawing.Point(8, 252);
+            this.groupBox3.Location = new System.Drawing.Point(8, 236);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(245, 179);
+            this.groupBox3.Size = new System.Drawing.Size(245, 200);
             this.groupBox3.TabIndex = 3;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Newspaper";
+            this.groupBox3.Text = "New newspaper";
             // 
             // dtp_Posted
             // 
@@ -360,15 +357,14 @@
             this.dtp_Posted.Size = new System.Drawing.Size(127, 20);
             this.dtp_Posted.TabIndex = 4;
             // 
-            // btn_AddNewspaper
+            // btnAddNewspaper
             // 
-            this.btn_AddNewspaper.Location = new System.Drawing.Point(159, 148);
-            this.btn_AddNewspaper.Name = "btn_AddNewspaper";
-            this.btn_AddNewspaper.Size = new System.Drawing.Size(80, 25);
-            this.btn_AddNewspaper.TabIndex = 6;
-            this.btn_AddNewspaper.Text = "Add";
-            this.btn_AddNewspaper.UseVisualStyleBackColor = true;
-            this.btn_AddNewspaper.Click += new System.EventHandler(this.btn_AddNewspaper_Click);
+            this.btnAddNewspaper.Location = new System.Drawing.Point(159, 169);
+            this.btnAddNewspaper.Name = "btnAddNewspaper";
+            this.btnAddNewspaper.Size = new System.Drawing.Size(80, 25);
+            this.btnAddNewspaper.TabIndex = 6;
+            this.btnAddNewspaper.Text = "Add";
+            this.btnAddNewspaper.UseVisualStyleBackColor = true;
             // 
             // label8
             // 
@@ -412,8 +408,20 @@
             this.dgvNewspapers.Size = new System.Drawing.Size(497, 230);
             this.dgvNewspapers.TabIndex = 2;
             // 
+            // labelInfo
+            // 
+            this.labelInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.labelInfo.AutoSize = true;
+            this.labelInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelInfo.ForeColor = System.Drawing.Color.Green;
+            this.labelInfo.Location = new System.Drawing.Point(19, 526);
+            this.labelInfo.Name = "labelInfo";
+            this.labelInfo.Size = new System.Drawing.Size(0, 18);
+            this.labelInfo.TabIndex = 3;
+            // 
             // btnExit
             // 
+            this.btnExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnExit.Location = new System.Drawing.Point(413, 524);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(80, 25);
@@ -427,6 +435,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(505, 561);
+            this.Controls.Add(this.labelInfo);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.tabControl1);
             this.Name = "MainForm";
@@ -445,6 +454,7 @@
             this.groupBox3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvNewspapers)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -458,30 +468,31 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox tbxYear;
-        private System.Windows.Forms.TextBox tbxAuthor;
+        private System.Windows.Forms.TextBox tbxYearBook;
+        private System.Windows.Forms.TextBox tbxAuthorBook;
         private System.Windows.Forms.TextBox tbxNameBook;
         private System.Windows.Forms.DataGridView dgvBooks;
         private System.Windows.Forms.TabPage tabPageMagazines;
         private System.Windows.Forms.TabPage tabPageNewspapers;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Button btn_AddMagazine;
+        private System.Windows.Forms.Button btnAddMagazine;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox tbxLang;
+        private System.Windows.Forms.TextBox tbxLangMag;
         private System.Windows.Forms.TextBox tbxNameMag;
         private System.Windows.Forms.DataGridView dgvMagazines;
-        private System.Windows.Forms.Button btn_DeleteMagazine;
+        private System.Windows.Forms.Button btnDeleteMagazine;
         private System.Windows.Forms.DateTimePicker dtp_Pablished;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.DateTimePicker dtp_Posted;
-        private System.Windows.Forms.Button btn_AddNewspaper;
+        private System.Windows.Forms.Button btnAddNewspaper;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox tbxNameNews;
         private System.Windows.Forms.DataGridView dgvNewspapers;
-        private System.Windows.Forms.Button btn_DeleteNewspaper;
+        private System.Windows.Forms.Button btnDeleteNewspaper;
         private System.Windows.Forms.Button btnExit;
+        private System.Windows.Forms.Label labelInfo;
     }
 }

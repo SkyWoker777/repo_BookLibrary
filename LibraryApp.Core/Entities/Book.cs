@@ -10,7 +10,7 @@ namespace LibraryApp.Core.Entities
     {
         private string _name;
         private string _author;
-        private int? _year;
+        private int _year;
 
         public string Name
         {
@@ -30,7 +30,7 @@ namespace LibraryApp.Core.Entities
                 OnPropertyChanged();
             }
         }
-        public int? Year
+        public int Year
         {
             get { return _year; }
             set

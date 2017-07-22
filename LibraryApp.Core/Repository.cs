@@ -21,7 +21,7 @@ namespace LibraryApp.Core
 
         public void Add<T>(T entity) where T : Entity
         {
-            if(typeof(T).Equals(typeof(Book)))
+            if (typeof(T).Equals(typeof(Book)))
             {
                 _context.Books.Add(entity as Book);
             }
@@ -50,5 +50,9 @@ namespace LibraryApp.Core
                 _context.Newspapers.Remove(entity as Newspaper);
             }
         }
+        //public void SaveChanges()
+        //{
+        //    _context.SaveChanges();
+        //}
     }
 }

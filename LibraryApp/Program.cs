@@ -1,4 +1,8 @@
-﻿using System;
+﻿using LibraryApp.Core;
+using LibraryApp.Presentation;
+using LibraryApp.Presentation.Presenters;
+using LibraryApp.Presentation.ViewContracts;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -13,7 +17,13 @@ namespace LibraryApp
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainForm());
+
+            var controller = new ApplicationController(new Adapter())
+                .RegisterView<IMainView, MainForm>()
+                .RegisterService<IRepository, Repository>()
+                .RegisterInstance(new ApplicationContext());
+
+            controller.Run<MainPresenter>();
         }
     }
 }
