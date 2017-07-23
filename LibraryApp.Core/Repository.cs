@@ -50,9 +50,5 @@ namespace LibraryApp.Core
                 _context.Newspapers.Remove(entity as Newspaper);
             }
         }
-        //public void SaveChanges()
-        //{
-        //    _context.SaveChanges();
-        //}
     }
 }

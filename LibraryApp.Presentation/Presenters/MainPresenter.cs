@@ -17,15 +17,19 @@ namespace LibraryApp.Presentation.Presenters
             :base(controller, view)
         {
             _repo = repository;
-
             LoadData();
-            View.AddBook += () => OnClick_AddBook(View.BookName, View.BookAuthor, View.BookYear);
-            View.AddMagazine += () => OnClick_AddMagazine(View.MagazineName, View.MagazineLang, View.Published);
-            View.AddNewspaper += () => OnClick_AddNewspaper(View.NewspaperName, View.PostedOn);
+
+            View.AddBook += OnClick_AddBook;
+            View.AddMagazine += OnClick_AddMagazine;
+            View.AddNewspaper += OnClick_AddNewspaper;
 
             View.DeleteBook += () => OnClick_DeleteBook(View.BookId);
             view.DeleteMagazine += () => OnClick_DeleteMagazine(View.MagazId);
             View.DeleteNewspaper += () => OnClick_DeleteNewspaper(View.NewspaperId);
+
+            View.EditBook += OnClick_EditBook;
+            View.EditMagazine += OnClick_EditMagz;
+            View.EditNewspaper += OnClick_EditNewsp;
         }
 
         private void LoadData()
@@ -33,40 +37,20 @@ namespace LibraryApp.Presentation.Presenters
             View.Load(_repo.Books, _repo.Magazines, _repo.Newspapers);
         }
 
-        private void OnClick_AddBook(string name, string author, string year)
+        private void OnClick_AddBook()
         {
-            if (String.IsNullOrWhiteSpace(year))
-                year = "0";
-
-            var book = new Book();
-            book.Name = name;
-            book.Author = author;
-            book.Year = int.Parse(year);
-            book.ID = (_repo.Books.Count() == 0) ? 1 : _repo.Books.Max(b => b.ID + 1);
-
-            _repo.Add(book);
+            Controller.Run<AddBookPresenter>();
             View.Message("The book is added successfully!");
         }
 
-        private void OnClick_AddMagazine(string name, string lang, DateTime? published)
+        private void OnClick_AddMagazine()
         {
-            var magazine = new Magazine();
-            magazine.Name = name;
-            magazine.Language = lang;
-            magazine.Published = published;
-            magazine.ID = (_repo.Magazines.Count() == 0) ? 1 : _repo.Magazines.Max(m => m.ID + 1);
-
-            _repo.Add(magazine);
+            Controller.Run<AddMagazinePresenter>();
             View.Message("The magazine is added successfully!");
         }
-        private void OnClick_AddNewspaper(string name, DateTime? posted)
+        private void OnClick_AddNewspaper()
         {
-            var paper = new Newspaper();
-            paper.Name = name;
-            paper.PostedOn = posted;
-            paper.ID = (_repo.Newspapers.Count() == 0) ? 1 : _repo.Newspapers.Max(n => n.ID + 1);
-
-            _repo.Add(paper);
+            Controller.Run<AddNewspPresenter>();
             View.Message("The newspaper is added successfully!");
         }
 
@@ -74,19 +58,36 @@ namespace LibraryApp.Presentation.Presenters
         {
             var book = _repo.Books.First(b => b.ID == id);
             _repo.Delete(book);
-            View.Message("It's deleted successfully.");
+            View.Message("It's deleted.");
         }
         private void OnClick_DeleteMagazine(int id)
         {
             var magazine = _repo.Magazines.First(m => m.ID == id);
             _repo.Delete(magazine);
-            View.Message("It's deleted successfully");
+            View.Message("It's deleted.");
         }
         private void OnClick_DeleteNewspaper(int id)
         {
             var paper = _repo.Newspapers.First(n => n.ID == id);
             _repo.Delete(paper);
-            View.Message("It's deleted successfully.");
+            View.Message("It's deleted.");
         }
+
+        private void OnClick_EditBook()
+        {
+            Controller.Run<EditBookPresenter, int, IRepository>(View.BookId, _repo);
+            View.Message("Saved successfully.");
+        }
+        private void OnClick_EditMagz()
+        {
+            Controller.Run<EditMagazinePresenter, int, IRepository>(View.MagazId, _repo);
+            View.Message("Saved successfully.");
+        }
+        private void OnClick_EditNewsp()
+        {
+            Controller.Run<EditNewspPresenter, int, IRepository>(View.NewspaperId, _repo);
+            View.Message("Saved successfully.");
+        }
+
     }
 }

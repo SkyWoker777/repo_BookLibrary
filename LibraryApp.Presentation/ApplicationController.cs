@@ -47,12 +47,15 @@ namespace LibraryApp.Presentation
             presenter.Run();
         }
 
-        public void Continue<TPresenter>() where TPresenter : class, IPresenter
+        public void Run<TPresenter, TArgument, TService>(TArgument arg, TService service)
+            where TPresenter : class, IPresenter<TArgument, TService>
         {
             if (!_adapter.IsRegistered<TPresenter>())
             {
                 _adapter.Register<TPresenter>();
             }
-        } 
+            var presenter = _adapter.Resolve<TPresenter>();
+            presenter.Run(arg, service);
+        }
     }
 }

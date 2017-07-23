@@ -15,6 +15,5 @@ namespace LibraryApp.Core
 
         void Add<T>(T entity) where T : Entity;
         void Delete<T>(T entity) where T : Entity;
-        //void SaveChanges();
     }
 }

@@ -10,31 +10,25 @@ namespace LibraryApp.Presentation.ViewContracts
     public interface IMainView : IView
     {
         int BookId { get; }
-        string BookName { get; }
-        string BookAuthor { get; }
-        string BookYear { get; }
-
         int MagazId { get; }
-        string MagazineName { get; }
-        string MagazineLang { get; }
-        DateTime? Published { get; }
-
         int NewspaperId { get; }
-        string NewspaperName { get; }
-        DateTime? PostedOn { get; }
 
         event Action AddBook;
         event Action DeleteBook;
-        //event Action Edit;
+        event Action EditBook;
+
         event Action AddMagazine;
         event Action DeleteMagazine;
+        event Action EditMagazine;
+
         event Action AddNewspaper;
         event Action DeleteNewspaper;
+        event Action EditNewspaper;
 
         void Load(IEnumerable<Book> listBooks, 
                         IEnumerable<Magazine> listMag, 
                             IEnumerable<Newspaper> listNews);
-
+        void Message(string message);
 
     }
 }

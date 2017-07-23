@@ -19,6 +19,7 @@ namespace LibraryApp.Presentation
 
         void Run<TPresenter>() where TPresenter : class, IPresenter;
 
-        void Continue<TPresenter>() where TPresenter : class, IPresenter;
+        void Run<TPresenter, TArgumnent, TService>(TArgumnent argumnent, TService service)
+            where TPresenter : class, IPresenter<TArgumnent, TService>;
     }
 }

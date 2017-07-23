@@ -10,7 +10,5 @@ namespace LibraryApp.Presentation
     {
         void Show();
         void Close();
-
-        void Message(string message);
     }
 }
