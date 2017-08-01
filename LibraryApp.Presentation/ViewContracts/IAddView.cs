@@ -11,16 +11,27 @@ namespace LibraryApp.Presentation.ViewContracts
         string BookName { get; }
         string BookAuthor { get; }
         string BookYear { get; }
+        string Cost { get; }
 
         event Action Add;
+        event Action YearNumberChecked;
+        event Action CostNumberChecked;
+
+        void ShowErrName(string text);
+        void ShowErrYear(string text);
+        void ShowErrCost(string text);
     }
 
     public interface IAddNewspView : IView
     {
         string NewspaperName { get; }
         DateTime? PostedOn { get; }
+        string Cost { get; }
 
         event Action Add;
+        event Action CostNumberChecked;
+        void ShowErrName(string text);
+        void ShowErrCost(string text);
     }
 
     public interface IAddMagazineView : IView
@@ -28,7 +39,11 @@ namespace LibraryApp.Presentation.ViewContracts
         string MagazineName { get; }
         string Lang { get; }
         DateTime? Published { get; }
+        string Cost { get; }
 
         event Action Add;
+        event Action CostNumberChecked;
+        void ShowErrName(string text);
+        void ShowErrCost(string text);
     }
 }

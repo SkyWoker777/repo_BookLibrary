@@ -1,37 +1,37 @@
 ﻿using LibraryApp.Presentation.ViewContracts;
 using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
 using System.Linq;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace LibraryApp
 {
-    public partial class EditBookForm : Form, IEditBookView
+    public partial class EditNewspaperForm : Form, IEditNewspView
     {
-        public EditBookForm()
+        public EditNewspaperForm()
         {
             InitializeComponent();
-
-            btnSave.Click += (sender, e) => Invoke(Save);
-            tbxYear.TextChanged += (sender, e) => YearNumberChecked();
+            btnSave.Click += (sender, e) => Save();
             tbxCost.TextChanged += (sender, e) => CostNumberChecked();
         }
 
-        public string BookName => tbxName.Text;
-        public string Author => tbxAuthor.Text;
-        public string Year => tbxYear.Text;
+        public string NewspName => tbxName.Text;
+        public DateTime? PostedOn => dtpPostedOn.Value.Date;
         public string Cost => tbxCost.Text;
 
         public event Action Save;
         public event Action CostNumberChecked;
-        public event Action YearNumberChecked;
 
-        public void SetFields(string name, string author, string year, string cost)
+        public void SetFields(string name, DateTime? posted, string cost)
         {
             tbxName.Text = name;
-            tbxAuthor.Text = author;
-            tbxYear.Text = year;
+            dtpPostedOn.Value = posted.Value;
             tbxCost.Text = cost;
         }
 
@@ -42,21 +42,11 @@ namespace LibraryApp
                 Thread.Sleep(2000); this.BeginInvoke((Action)(() => labelErrName.Text = ""));
             })).Start();
         }
-        public void ShowErrYear(string text)
-        {
-            labelErrYear.Text = text;
-            tbxYear.Text = tbxYear.Text.Remove(tbxYear.Text.IndexOf(tbxYear.Text.Last()));
-            (new Task(() =>
-            {
-                Thread.Sleep(2000); this.BeginInvoke((Action)(() => labelErrYear.Text = ""));
-            })).Start();
-        }
         public void ShowErrCost(string text)
         {
             labelErrCost.Text = text;
             tbxCost.Text = tbxCost.Text.Remove(tbxCost.Text.IndexOf(tbxCost.Text.Last()));
-            (new Task(() =>
-            {
+            (new Task(() => {
                 Thread.Sleep(2000); this.BeginInvoke((Action)(() => labelErrCost.Text = ""));
             })).Start();
         }

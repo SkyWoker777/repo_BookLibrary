@@ -17,30 +17,44 @@ namespace LibraryApp.Presentation.Presenters
         public EditBookPresenter(IApplicationController controller, IEditBookView view)
             :base(controller, view)
         {
-            View.Save += () => EditClick(View.BookName, View.Author, View.Year);
+            View.Save += () => EditClick(View.BookName, View.Author, View.Year, View.Cost);
+            View.CostNumberChecked += () => ValidateField(View.Cost);
+            View.YearNumberChecked += () => ValidateField(View.Year);
         }
 
-        private void EditClick(string name, string author, string year)
+        private void EditClick(string name, string author, string year, string cost)
         {
             if (String.IsNullOrWhiteSpace(name))
             {
-                View.Message("field can not be empty.");
+                View.ShowErrName("field can not be empty.");
                 return;
             }
             _book.Name = name;
             _book.Author = author;
             _book.Year = int.Parse(year);
+            _book.Cost = Convert.ToDouble(cost);
 
             View.Close();
         }
-
+        private void ValidateField(string field)
+        {
+            if (!decimal.TryParse(field, out decimal res) && !String.IsNullOrWhiteSpace(field))
+            {
+                if (field == View.Cost)
+                {
+                    View.ShowErrCost("only numbers");
+                    return;
+                }
+                View.ShowErrYear("only numbers");
+            }
+        }
         public override void Run(int bookId, IRepository context)
         {
             _repo = context;
             _book = new Book();
             _book = _repo.Books.First(b => b.ID == bookId);
 
-            View.SetFields(_book.Name, _book.Author, _book.Year.ToString());
+            View.SetFields(_book.Name, _book.Author, _book.Year.ToString(), _book.Cost.ToString());
             View.Show();
         }
     }

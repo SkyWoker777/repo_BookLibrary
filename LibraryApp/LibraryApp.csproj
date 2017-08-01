@@ -55,11 +55,41 @@
     <Compile Include="AddBookForm.Designer.cs">
       <DependentUpon>AddBookForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="AddMagazineForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddMagazineForm.Designer.cs">
+      <DependentUpon>AddMagazineForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddNewspaperForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddNewspaperForm.Designer.cs">
+      <DependentUpon>AddNewspaperForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CartForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CartForm.Designer.cs">
+      <DependentUpon>CartForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="EditBookForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="EditBookForm.Designer.cs">
       <DependentUpon>EditBookForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EditMagazineForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditMagazineForm.Designer.cs">
+      <DependentUpon>EditMagazineForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EditNewspaperForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditNewspaperForm.Designer.cs">
+      <DependentUpon>EditNewspaperForm.cs</DependentUpon>
     </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
@@ -72,8 +102,23 @@
     <EmbeddedResource Include="AddBookForm.resx">
       <DependentUpon>AddBookForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="AddMagazineForm.resx">
+      <DependentUpon>AddMagazineForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddNewspaperForm.resx">
+      <DependentUpon>AddNewspaperForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CartForm.resx">
+      <DependentUpon>CartForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="EditBookForm.resx">
       <DependentUpon>EditBookForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditMagazineForm.resx">
+      <DependentUpon>EditMagazineForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditNewspaperForm.resx">
+      <DependentUpon>EditNewspaperForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>

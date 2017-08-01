@@ -25,10 +25,15 @@ namespace LibraryApp.Presentation.ViewContracts
         event Action DeleteNewspaper;
         event Action EditNewspaper;
 
+        event Action AddBookToCart;
+        event Action AddMagazineToCart;
+        event Action AddNewspaperToCart;
+
+        event Action Cart; 
+
         void Load(IEnumerable<Book> listBooks, 
                         IEnumerable<Magazine> listMag, 
                             IEnumerable<Newspaper> listNews);
-        void Message(string message);
-
+        void Message(string text);
     }
 }

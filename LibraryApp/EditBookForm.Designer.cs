@@ -36,7 +36,11 @@
             this.label3 = new System.Windows.Forms.Label();
             this.btnSave = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
-            this.labelErr = new System.Windows.Forms.Label();
+            this.labelErrName = new System.Windows.Forms.Label();
+            this.tbxCost = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.labelErrCost = new System.Windows.Forms.Label();
+            this.labelErrYear = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // tbxName
@@ -56,8 +60,9 @@
             // tbxYear
             // 
             this.tbxYear.Location = new System.Drawing.Point(11, 153);
+            this.tbxYear.MaxLength = 4;
             this.tbxYear.Name = "tbxYear";
-            this.tbxYear.Size = new System.Drawing.Size(77, 20);
+            this.tbxYear.Size = new System.Drawing.Size(75, 20);
             this.tbxYear.TabIndex = 2;
             // 
             // label1
@@ -89,7 +94,7 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(142, 150);
+            this.btnSave.Location = new System.Drawing.Point(141, 200);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(80, 25);
             this.btnSave.TabIndex = 6;
@@ -106,21 +111,59 @@
             this.label4.TabIndex = 7;
             this.label4.Text = "Change the fields to edit book.";
             // 
-            // labelErr
+            // labelErrName
             // 
-            this.labelErr.AutoSize = true;
-            this.labelErr.ForeColor = System.Drawing.Color.Red;
-            this.labelErr.Location = new System.Drawing.Point(53, 43);
-            this.labelErr.Name = "labelErr";
-            this.labelErr.Size = new System.Drawing.Size(0, 13);
-            this.labelErr.TabIndex = 8;
+            this.labelErrName.AutoSize = true;
+            this.labelErrName.ForeColor = System.Drawing.Color.Red;
+            this.labelErrName.Location = new System.Drawing.Point(53, 43);
+            this.labelErrName.Name = "labelErrName";
+            this.labelErrName.Size = new System.Drawing.Size(0, 13);
+            this.labelErrName.TabIndex = 8;
+            // 
+            // tbxCost
+            // 
+            this.tbxCost.Location = new System.Drawing.Point(132, 153);
+            this.tbxCost.Name = "tbxCost";
+            this.tbxCost.Size = new System.Drawing.Size(89, 20);
+            this.tbxCost.TabIndex = 9;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(129, 137);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(31, 13);
+            this.label5.TabIndex = 10;
+            this.label5.Text = "Cost:";
+            // 
+            // labelErrCost
+            // 
+            this.labelErrCost.AutoSize = true;
+            this.labelErrCost.ForeColor = System.Drawing.Color.Red;
+            this.labelErrCost.Location = new System.Drawing.Point(157, 137);
+            this.labelErrCost.Name = "labelErrCost";
+            this.labelErrCost.Size = new System.Drawing.Size(0, 13);
+            this.labelErrCost.TabIndex = 11;
+            // 
+            // labelErrYear
+            // 
+            this.labelErrYear.AutoSize = true;
+            this.labelErrYear.ForeColor = System.Drawing.Color.Red;
+            this.labelErrYear.Location = new System.Drawing.Point(41, 137);
+            this.labelErrYear.Name = "labelErrYear";
+            this.labelErrYear.Size = new System.Drawing.Size(0, 13);
+            this.labelErrYear.TabIndex = 12;
             // 
             // EditBookForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(234, 191);
-            this.Controls.Add(this.labelErr);
+            this.ClientSize = new System.Drawing.Size(234, 237);
+            this.Controls.Add(this.labelErrYear);
+            this.Controls.Add(this.labelErrCost);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.tbxCost);
+            this.Controls.Add(this.labelErrName);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.label3);
@@ -130,7 +173,8 @@
             this.Controls.Add(this.tbxAuthor);
             this.Controls.Add(this.tbxName);
             this.Name = "EditBookForm";
-            this.Text = "Book Editor";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Text = "Editor";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -146,6 +190,10 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label labelErr;
+        private System.Windows.Forms.Label labelErrName;
+        private System.Windows.Forms.TextBox tbxCost;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label labelErrCost;
+        private System.Windows.Forms.Label labelErrYear;
     }
 }

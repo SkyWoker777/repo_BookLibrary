@@ -46,7 +46,16 @@ namespace LibraryApp.Presentation
             var presenter = _adapter.Resolve<TPresenter>();
             presenter.Run();
         }
-
+        public void Run<TPresenter, TArgument>(TArgument arg)
+            where TPresenter : class, IPresenter<TArgument>
+        {
+            if (!_adapter.IsRegistered<TPresenter>())
+            {
+                _adapter.Register<TPresenter>();
+            }
+            var presenter = _adapter.Resolve<TPresenter>();
+            presenter.Run(arg);
+        }
         public void Run<TPresenter, TArgument, TService>(TArgument arg, TService service)
             where TPresenter : class, IPresenter<TArgument, TService>
         {

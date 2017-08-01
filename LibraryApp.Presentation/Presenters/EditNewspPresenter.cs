@@ -17,28 +17,36 @@ namespace LibraryApp.Presentation.Presenters
         public EditNewspPresenter(IApplicationController controller, IEditNewspView view)
             :base(controller, view)
         {
-            View.Save += () => EditClick(View.NewspName, View.PostedOn);
+            View.Save += () => EditClick(View.NewspName, View.PostedOn, View.Cost);
+            View.CostNumberChecked += () => ValidateField(View.Cost);
         }
 
-        private void EditClick(string name, DateTime? posted)
+        private void EditClick(string name, DateTime? posted, string cost)
         {
             if (String.IsNullOrWhiteSpace(name))
             {
-                View.Message("field can not be empty.");
+                View.ShowErrName("field can not be empty.");
                 return;
             }
             _newsp.Name = name;
             _newsp.PostedOn = posted;
+            _newsp.Cost = Convert.ToDouble(cost);
 
             View.Close();
         }
-
+        private void ValidateField(string field)
+        {
+            if (!decimal.TryParse(field, out decimal res) && !String.IsNullOrWhiteSpace(field))
+            {
+                View.ShowErrCost("only numbers");
+            }
+        }
         public override void Run(int arg, IRepository context)
         {
             _repo = context;
             _newsp = new Newspaper();
             _newsp = _repo.Newspapers.First(m => m.ID == arg);
-            View.SetFields(_newsp.Name, _newsp.PostedOn);
+            View.SetFields(_newsp.Name, _newsp.PostedOn, _newsp.Cost.ToString());
             View.Show();
         }
     }

@@ -5,6 +5,8 @@ using System.Linq;
 using System.Windows.Forms;
 using LibraryApp.Presentation.ViewContracts;
 using LibraryApp.Core.Entities;
+using System.Threading.Tasks;
+using System.Threading;
 
 namespace LibraryApp
 {
@@ -29,35 +31,116 @@ namespace LibraryApp
             btnEditBook.Click += (sender, e) => Invoke(EditBook);
             btnEditMag.Click += (sender, e) => Invoke(EditMagazine);
             btnEditNper.Click += (sender, e) => Invoke(EditNewspaper);
+            btnCart.Click += (sender, e) => Invoke(Cart);
+
+            dgvBooks.CellClick += DgvBooks_CellClick;
+            dgvMagazines.CellClick += DgvMagazines_CellClick;
+            dgvNewspapers.CellClick += DgvNewspapers_CellClick;
+
+            dgvBooks.DataBindingComplete += (sender, e) => DgvBooks_DataBindingComplete();
+            dgvMagazines.DataBindingComplete +=(sender, e) => DgvMagazines_DataBindingComplete();
+            dgvNewspapers.DataBindingComplete += (sender, e) => DgvNewspapers_DataBindingComplete();
+
         }
 
+        private void DgvNewspapers_DataBindingComplete()
+        {
+            this.dgvNewspapers.Columns["ID"].Visible = false;
+            this.dgvNewspapers.Columns["ProductCount"].Visible = false;
+        }
+        private void DgvMagazines_DataBindingComplete()
+        {
+            this.dgvMagazines.Columns["ID"].Visible = false;
+            this.dgvMagazines.Columns["ProductCount"].Visible = false;
+        }
+        private void DgvBooks_DataBindingComplete()
+        {
+            this.dgvBooks.Columns["ID"].Visible = false;
+            this.dgvBooks.Columns["ProductCount"].Visible = false;
+        }
+        
+        public event Action Cart;
+
         #region tabPageBooks
-        public int BookId => (int)dgvBooks["ID", dgvBooks.CurrentRow.Index].Value;
+        public int BookId
+        {
+            get {
+                if(_bsBooks.List.Count != default(int))
+                    return (int)dgvBooks["ID", dgvBooks.CurrentRow.Index].Value;
+                return default(int);
+            }
+        }
 
         public event Action AddBook;
         public event Action DeleteBook;
         public event Action EditBook;
+        public event Action AddBookToCart;
+        private void DgvBooks_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0 || e.ColumnIndex != dgvBooks.Columns["CartColumn"].Index)
+                return;
+
+            AddBookToCart();
+        }
+
         #endregion
 
         #region tabPageMagazines
-        public int MagazId => (int)dgvMagazines["ID", dgvMagazines.CurrentRow.Index].Value;
+        public int MagazId
+        {
+            get {
+                if(_bsMagazines.List.Count != default(int))
+                    return (int)dgvMagazines["ID", dgvMagazines.CurrentRow.Index].Value;
+                return default(int);
+            }
+        }
 
         public event Action AddMagazine;
         public event Action DeleteMagazine;
         public event Action EditMagazine;
+        public event Action AddMagazineToCart;
+
+        private void DgvMagazines_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0 || e.ColumnIndex != dgvMagazines.Columns["MagazinesColumnButtonBuy"].Index)
+                return;
+
+            AddMagazineToCart();
+        }
         #endregion
 
         #region tabPageNewspapers
-        public int NewspaperId => (int)dgvNewspapers["ID", dgvNewspapers.CurrentRow.Index].Value;
+        public int NewspaperId
+        {
+            get
+            {
+                if(_bsNewspapers.List.Count != default(int))
+                    return (int)dgvNewspapers["ID", dgvNewspapers.CurrentRow.Index].Value;
+                return default(int);
+            }
+        }
 
         public event Action AddNewspaper;
         public event Action DeleteNewspaper;
         public event Action EditNewspaper;
+        public event Action AddNewspaperToCart;
+        private void DgvNewspapers_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0 || e.ColumnIndex != dgvNewspapers.Columns["NewspapersColumnButtonBuy"].Index)
+                return;
+
+            AddNewspaperToCart();
+        }
+
         #endregion
 
         public void Message(string message)
         {
             labelInfo.Text = message;
+            (new Task(() =>
+            {
+                Thread.Sleep(3000); this.BeginInvoke((Action)(() => labelInfo.Text = ""));
+            })).Start();
         }
 
         public new void Load(IEnumerable<Book> listBook, IEnumerable<Magazine> listMag,
@@ -71,6 +154,7 @@ namespace LibraryApp
 
             _bsNewspapers.DataSource = listNews;
             dgvNewspapers.DataSource = _bsNewspapers;
+
         }
         public new void Show()
         {

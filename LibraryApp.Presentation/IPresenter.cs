@@ -10,6 +10,10 @@ namespace LibraryApp.Presentation
     {
         void Run();
     }
+    public interface IPresenter<in TArgument>
+    {
+        void Run(TArgument arg);
+    }
     public interface IPresenter<in TArgument, in TService>
     {
         void Run(TArgument arg, TService service);

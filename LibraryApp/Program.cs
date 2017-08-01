@@ -21,7 +21,12 @@ namespace LibraryApp
             var controller = new ApplicationController(new Adapter())
                 .RegisterView<IMainView, MainForm>()
                 .RegisterView<IAddBookView, AddBookForm>()
+                .RegisterView<IAddMagazineView, AddMagazineForm>()
+                .RegisterView<IAddNewspView, AddNewspaperForm>()
                 .RegisterView<IEditBookView, EditBookForm>()
+                .RegisterView<IEditMagzView, EditMagazineForm>()
+                .RegisterView<IEditNewspView, EditNewspaperForm>()
+                .RegisterView<ICartView, CartForm>()
                 .RegisterService<IRepository, Repository>()
                 .RegisterInstance(new ApplicationContext());
 

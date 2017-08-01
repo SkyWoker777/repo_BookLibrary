@@ -17,29 +17,37 @@ namespace LibraryApp.Presentation.Presenters
         public EditMagazinePresenter(IApplicationController controller, IEditMagzView view)
             :base(controller, view)
         {
-            View.Save += () => EditClick(View.MagName, View.Lang, View.Published);
+            View.Save += () => EditClick(View.MagName, View.Lang, View.Published, View.Cost);
+            View.CostNumberChecked += () => ValidateField(View.Cost);
         }
 
-        private void EditClick(string name, string lang, DateTime? published)
+        private void EditClick(string name, string lang, DateTime? published, string cost)
         {
             if (String.IsNullOrWhiteSpace(name))
             {
-                View.Message("field can not be empty.");
+                View.ShowErrName("field can not be empty.");
                 return;
             }
             _magazine.Name = name;
             _magazine.Language = lang;
             _magazine.Published = published;
+            _magazine.Cost = Convert.ToDouble(cost);
 
             View.Close();
         }
-
+        private void ValidateField(string field)
+        {
+            if (!decimal.TryParse(field, out decimal res) && !String.IsNullOrWhiteSpace(field))
+            {
+                View.ShowErrCost("only numbers");
+            }
+        }
         public override void Run(int arg, IRepository context)
         {
             _repo = context;
             _magazine = new Magazine();
             _magazine = _repo.Magazines.First(m => m.ID == arg);
-            View.SetFields(_magazine.Name, _magazine.Language, _magazine.Published);
+            View.SetFields(_magazine.Name, _magazine.Language, _magazine.Published, _magazine.Cost.ToString());
             View.Show();
         }
     }

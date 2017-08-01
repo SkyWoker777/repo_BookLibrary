@@ -47,6 +47,7 @@
     <Compile Include="Presenters\AddMagazinePresenter.cs" />
     <Compile Include="Presenters\AddNewspPresenter.cs" />
     <Compile Include="Presenters\BasePresenter.cs" />
+    <Compile Include="Presenters\CartPresenter.cs" />
     <Compile Include="Presenters\EditBookPresenter.cs" />
     <Compile Include="Presenters\EditMagazinePresenter.cs" />
     <Compile Include="Presenters\EditNewspPresenter.cs" />
@@ -55,6 +56,7 @@
     <Compile Include="IView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewContracts\IAddView.cs" />
+    <Compile Include="ViewContracts\ICartView.cs" />
     <Compile Include="ViewContracts\IEditView.cs" />
     <Compile Include="ViewContracts\IMainView.cs" />
   </ItemGroup>
